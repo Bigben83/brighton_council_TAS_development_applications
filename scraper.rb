@@ -74,7 +74,7 @@ table.css('tr').each do |row|
   # Extract the text content of each column
   description = columns[0].text.strip
   address = columns[1].text.strip
-  on_notice_to = columns[2].text.strip
+  on_notice_to = Date.strptime(columns[2].text.strip, '%d %B %Y').strftime('%Y-%m-%d') rescue nil
   pdf_link = columns[3].css('a').first['href'] rescue nil
   # Extract the text between the <a> tags (this is the council_reference)
   council_reference = columns[3].css('a').text.strip rescue nil
