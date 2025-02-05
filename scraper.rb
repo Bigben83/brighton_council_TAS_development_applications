@@ -81,11 +81,11 @@ table.css('tr').each do |row|
   date_scraped = Date.today.to_s
 
   # Step 6: Ensure the entry does not already exist before inserting
-  existing_entry = db.execute("SELECT * FROM breakoday WHERE council_reference = ?", [council_reference])
+  existing_entry = db.execute("SELECT * FROM brighton WHERE council_reference = ?", [council_reference])
 
   if existing_entry.empty? # Only insert if the entry doesn't already exist
     # Insert the data into the database
-    db.execute("INSERT INTO breakoday (description, address, on_notice_to, document_description, council_reference, date_scraped) VALUES (?, ?, ?, ?, ?, ?)",
+    db.execute("INSERT INTO brighton (description, address, on_notice_to, document_description, council_reference, date_scraped) VALUES (?, ?, ?, ?, ?, ?)",
              [description, address, on_notice_to, pdf_link, council_reference, date_scraped])
     logger.info("Data for application #{council_reference} saved to database.")
   else
